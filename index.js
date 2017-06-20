@@ -33,9 +33,6 @@ const listener = function (db) {
           dayLow : Number(args[9]),
           time: Math.floor(Date.now() / 1000)
         }
-
-        console.log(args[0] + ' is: ' + Number(args[5]));
-        console.log(tickersCollection)
         tickersCollection.insertOne(tickerModel, function (error, r) {
           if (error) {
             console.error(error)
