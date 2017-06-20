@@ -37,11 +37,10 @@ const listener = function (db) {
         console.log(args[0] + ' is: ' + Number(args[5]));
         console.log(tickersCollection)
         tickersCollection.insertOne(tickerModel, function (error, r) {
-          console.error('
-
-            ')
-          console.error(r)
-          process.exit()
+          if (error) {
+            console.error(error)
+            process.exit()
+          }
         })
       }
     }
