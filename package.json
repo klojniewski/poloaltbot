@@ -19,6 +19,7 @@
   "homepage": "https://github.com/klojniewski/poloaltbot#readme",
   "dependencies": {
     "autobahn": "^17.5.1",
+    "express": "^4.15.3",
     "mongodb": "^2.2.26"
   }
 }

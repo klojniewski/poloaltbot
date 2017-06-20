@@ -1,4 +1,4 @@
-const VOLUME_LIMIT = 7000
+const VOLUME_LIMIT = 1000
 const autobahn = require('autobahn')
 const MongoClient = require('mongodb').MongoClient
 const assert = require('assert');
