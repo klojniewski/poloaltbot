@@ -9,7 +9,8 @@ const DB_URL = 'mongodb://localhost:27017/poloaltbot';
 const API_WS_URL = "wss://api.poloniex.com";
 var connection = new autobahn.Connection({
   url: API_WS_URL,
-  realm: "realm1"
+  realm: "realm1",
+  max_retries: -1
 });
 
 
