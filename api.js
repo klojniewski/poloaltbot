@@ -7,8 +7,21 @@ const assert = require('assert');
 // Connection URL
 const DB_URL = 'mongodb://localhost:27017/poloaltbot';
 
-const WATCHED_PAIRS = ['BTC_ETH', 'BTC_LTC', 'BTC_ETC']
-
+const WATCHED_PAIRS = [
+  'BTC_XMR',
+  'BTC_MAID',
+  'BTC_ETH',
+  'BTC_BTCD',
+  'BTC_BTS',
+  'BTC_DGB',
+  'BTC_DOGE',
+  'BTC_NMC',
+  'BTC_PPC',
+  'BTC_QORA',
+  'BTC_SILK',
+  'BTC_SYS',
+  'BTC_XRP',
+  'USDT_BTC']
 
 const listener = function (db) {
   const tickersCollection = db.collection('tickers');
@@ -20,6 +33,13 @@ const listener = function (db) {
       dateString = newDate.toUTCString();
       res.send(dateString)
     })
+  })
+  app.get('/stats', function (req, res) {
+    // max
+    // db.getCollection('tickers').find({"currencyPair": 'BTC_ETH'}).sort({ "highestBid": -1}).limit(1)
+    // min
+    // db.getCollection('tickers').find({"currencyPair": 'BTC_ETH'}).sort({ "highestBid": 1}).limit(1)
+    
   })
   app.listen(4000, function () {
     console.log('Example app listening on port 4000!')
