@@ -17,4 +17,8 @@ const tickerSchema = new Schema({
   time: Number
 });
 
+tickerSchema.statics.findMax = function (currencyPair, callback) {
+  return this.findOne({ currencyPair }, callback).sort({ highestBid: -1 })
+}
+
 module.exports = mongoose.model('Ticker', tickerSchema);
