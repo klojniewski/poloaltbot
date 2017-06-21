@@ -1,7 +1,7 @@
 const Env = require('./config/env')
 const autobahn = require('autobahn')
 const Mongoose = require('mongoose');
-const TickerModel = require('./models/ticker')
+const TickerModel = require('./models/Ticker')
 
 class TickerLogger {
   constructor () {

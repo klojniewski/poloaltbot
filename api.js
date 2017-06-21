@@ -3,7 +3,7 @@ const express = require('express')
 const app = express()
 
 const Mongoose = require('mongoose');
-const TickerModel = require('./models/ticker')
+const TickerModel = require('./models/Ticker')
 
 // Connection URL
 Mongoose.connect(Env.DB_URL);
