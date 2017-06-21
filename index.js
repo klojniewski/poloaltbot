@@ -4,7 +4,7 @@ const Mongoose = require('mongoose');
 const TickerModel = require('./models/ticker')
 
 // Connection URL
-const DB_URL = 'mongodb://localhost:27017/poloaltbot';
+const DB_URL = 'mongodb://localhost:27017/poloaltbot-2';
 // POLONIEX URL
 const API_WS_URL = "wss://api.poloniex.com";
 
@@ -14,7 +14,7 @@ class TickerLogger {
     Mongoose.Promise = global.Promise
   }
   init () {
-    console.info("Init");
+    console.info("TickerLogger Init");
     const connection = new autobahn.Connection({
       url: API_WS_URL,
       realm: "realm1",
@@ -22,15 +22,15 @@ class TickerLogger {
     });
     connection.onopen = session => {
       console.info("Websocket connection oppened");
-      session.subscribe('ticker', this.tickerEvent);
+      session.subscribe('ticker', this.tickerLogger);
     }
     connection.onclose = () => {
       console.info("Websocket connection closed");
     }
+    console.info("Websocket starts to open");
     connection.open();
   }
   tickerLogger (args, kwargs) {
-    console.log('tickerLogger')
     if (args[0].includes('BTC_') && Number(args[5]) > VOLUME_LIMIT) {
       const tickerUpdate = {
         currencyPair: args[0],
@@ -49,8 +49,6 @@ class TickerLogger {
         if (error) {
           console.error(error)
           process.exit()
-        } else {
-          console.info('created')
         }
       })
     }
