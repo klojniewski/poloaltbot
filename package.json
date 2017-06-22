@@ -21,7 +21,6 @@
     "autobahn": "^17.5.1",
     "express": "^4.15.3",
     "moment": "^2.18.1",
-    "mongodb": "^2.2.26",
     "mongoose": "^4.10.7"
   }
 }
