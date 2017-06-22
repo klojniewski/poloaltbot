@@ -25,6 +25,34 @@ app.get('/ath',(req, res) => {
   })
 })
 
+const getAllHours = function (pair) {
+  return Promise.all(Env.HOURS_LIST.map(hour => TickerModel.findMaxByHour(pair, hour)))
+}
+
+app.get('/get-all/',(req, res) => {
+  Promise.all(Env.WATCHED_PAIRS.map(pair => getAllHours(pair))).then(values => {
+    res.send(values.map((value, pairNo) => {
+      return {
+        name: Env.WATCHED_PAIRS[pairNo],
+        hours: value.map((val, hoursNo) => {
+          return {
+            name: Env.HOURS_LIST[hoursNo],
+            ticker: val
+          }
+        })
+      }
+    }))
+  })
+})
+
+app.get('/get-max/:pair/:hours',(req, res) => {
+  const params = req.params
+  const hours = parseInt(params.hours, 10)
+  TickerModel.findMaxByHour(params.pair, hours).then(ticker => {
+    res.send({ ticker, hours})
+  })
+})
+
 app.listen(Env.API_PORT, function () {
   console.log(`API Server listening on port ${Env.API_PORT}!`)
 })
