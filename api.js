@@ -29,7 +29,7 @@ const getAllHours = function (pair) {
   return Promise.all(Env.HOURS_LIST.map(hour => TickerModel.findMaxByHour(pair, hour)))
 }
 
-app.get('/get-all/',(req, res) => {
+app.get('/get-all/', (req, res) => {
   Promise.all(Env.WATCHED_PAIRS.map(pair => getAllHours(pair))).then(values => {
     res.send(values.map((value, pairNo) => {
       return {
